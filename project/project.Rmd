@@ -26,7 +26,7 @@ head(netflixShows)
 ```
 
 
-show the ratins and what they mean 
+show the ratins and what they mean vfdffg
 ```{r}
  rating_meaning<- netflixShows %>% 
   select(rating, ratingLevel )
