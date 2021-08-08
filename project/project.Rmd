@@ -8,10 +8,21 @@ This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*.
 
 ```{r}
-library(tidyverse)
 library(ggplot2)
-netflixlink<-"https://github.com/captainspace168/projectnet/blob/8e335a64fe833b042cac808c05325397f87cb2cf/project/netflixShows.csv"
-netflixShows<- read_csv(netflixlink)
+
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+
+
+netflixlink<-"netflixShows.csv"
+netflixShows<- read_csv(netflixlink,    col_types = cols(ratingDescription = col_integer(), 
+        release_year = col_integer(), user_rating_score = col_integer(), 
+        user_rating_size = col_integer()))
 ```
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
@@ -30,10 +41,10 @@ head(netflixShows)
 
 show the ratins and what they mean
 
-<<<<<<< HEAD
-=======
-show the ratins and what they mean vfdffg
->>>>>>> 8e335a64fe833b042cac808c05325397f87cb2cf
+
+
+show the ratins and what they mean 
+
 ```{r}
  rating_meaning<- netflixShows %>% 
   select(rating, ratingLevel )
@@ -78,15 +89,82 @@ netflixShows %>%
 ```
 
 ```{r}
+ ggplot(netflixShows ,aes(x= release_year,y=user_rating_score,  )) +
+  geom_point( color="#E50914",fill="#E50914")+
+  labs(title = "user ratings per year ",
+       x = "release  year",
+       y = "user rating ",)
 
-ggplot(data = netflixShows,aes(x= release_year,y=user_rating_score)) +
-  geom_count( color="#E50914",fill="#E50914")+
-  theme_minimal()+
- guides(fill=guide_legend(title="New Legend Title"))
- 
 ```
 
 ```{r}
-netflixShows %>% 
-  count(user_rating_score)
+  ratings_1<-select(netflixShows,release_year, ratingLevel, ratingDescription) %>% 
+  group_by(release_year) %>% 
+  count(ratingDescription) %>% 
+  arrange(desc(release_year))
+ratings_1
 ```
+
+```{r}
+
+
+ggplot(data=ratings_1,aes(y= ratingDescription,x= release_year)) +
+geom_point(color="black",binwidth=5)+
+  labs(title = "amount of diffrently rated movies per year ",
+       x = "release  year",
+       y = "age rating ",
+       size = "age rating")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+```{r}
+ggplot(netflixShows, aes( y=user_rating_score,x=release_year)) +
+  geom_point() +
+
+```
+```{r}
+titlenum<-select(netflixShows, title, release_year) %>% 
+  group_by(release_year) %>% 
+  count(release_year)
+titlenum
+```
+
+```{r}
+
+ggplot(titlenum, aes(y=n,x=release_year))+
+  geom_point()+ 
+  labs(title = "amount of movies added per year ",
+       x = "release  year",
+       y = "number of movies ",
+       size = "")
+       
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
