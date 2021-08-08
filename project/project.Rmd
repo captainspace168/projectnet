@@ -30,6 +30,10 @@ head(netflixShows)
 
 show the ratins and what they mean
 
+<<<<<<< HEAD
+=======
+show the ratins and what they mean vfdffg
+>>>>>>> 8e335a64fe833b042cac808c05325397f87cb2cf
 ```{r}
  rating_meaning<- netflixShows %>% 
   select(rating, ratingLevel )
