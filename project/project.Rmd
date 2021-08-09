@@ -173,15 +173,29 @@ select(netflixShows, title, release_year) %>%
   group_by(release_year) %>% 
   count(release_year)
 ```
-what movies are suitable for children under 13 
+what are the newest Netflix series are most suitable for children under 13?
 
 ```{r}
 netflixShows %>% 
-  select(title, rating, ratingLevel, ratingDescription) %>% 
-  filter(ratingDescription <=70)
+  select(title, rating, ratingLevel, ratingDescription,release_year) %>% 
+  filter(ratingDescription <=70) %>% 
+  arrange(desc(release_year))%>% 
+  summarize(title, rating, ratingLevel)
+```
+what year has the the most movies with the highest average rating
+```{r}
+year_rating<-netflixShows %>% 
+  select(release_year, user_rating_score,title) %>% 
+  group_by(release_year) %>% 
+ 
+  summarise(averge_rating_per_year =mean(user_rating_score ,na.rm=TRUE))
 ```
 
 
+```{r}
+year_rating %>% 
+  select(titlenum,n)
+```
 
 
 
