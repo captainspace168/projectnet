@@ -129,7 +129,7 @@ geom_point(color="black",binwidth=5)+
 
 ```{r}
 ggplot(netflixShows, aes( y=user_rating_score,x=release_year)) +
-  geom_point() +
+  geom_point() 
 
 ```
 ```{r}
@@ -152,10 +152,17 @@ ggplot(titlenum, aes(y=n,x=release_year))+
 
 
 
+what was the average user rating for the movies made in 2016?
+```{r}
+netflixShows %>% 
+  select(release_year, user_rating_score) %>% 
+  filter(release_year==2016,) %>% 
+  summarize(average_rating_2016=(mean(user_rating_score,na.rm=TRUE)))
+```
 
 
 
-
+the average user rating in the year 2016 was 86.835
 
 
 
