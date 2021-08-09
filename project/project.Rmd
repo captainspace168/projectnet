@@ -165,13 +165,20 @@ netflixShows %>%
 the average user rating in the year 2016 was 86.835
 
 
-how mnay moves were added each year?
+how many moves were added each year?
 
 
 ```{r}
 select(netflixShows, title, release_year) %>% 
   group_by(release_year) %>% 
   count(release_year)
+```
+what movies are suitable for children under 13 
+
+```{r}
+netflixShows %>% 
+  select(title, rating, ratingLevel, ratingDescription) %>% 
+  filter(ratingDescription <=70)
 ```
 
 
