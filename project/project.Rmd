@@ -108,7 +108,7 @@ ratings_1
 ```{r}
 
 
-ggplot(data=ratings_1,aes(y= ratingDescription,x= release_year)) +
+ggplot(data=ratings_1,aes(y= ratingDescription,x= release_year, color= rating)) +
 geom_point(color="black",binwidth=5)+
   labs(title = "amount of diffrently rated movies per year ",
        x = "release  year",
