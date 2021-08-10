@@ -3,22 +3,13 @@ title: "R Notebook"
 output: html_notebook
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
-
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*.
 
 ```{r}
 library(ggplot2)
-
-```
-
-```{r}
 library(tidyverse)
 ```
 
 ```{r}
-
-
 netflixlink<-"netflixShows.csv"
 netflixShows<- read_csv(netflixlink,    col_types = cols(ratingDescription = col_integer(), 
         release_year = col_integer(), user_rating_score = col_integer(), 
@@ -32,36 +23,47 @@ When you save the notebook, an HTML file containing the code and output will be 
 ```{r}
 glimpse(netflixShows)
 
-
 ```
 
 ```{r}
 head(netflixShows)
 ```
 
-show the ratins and what they mean
-
-
-
-show the ratins and what they mean 
-
+```{r}
+summary(netflixShows)
+```
+diffrent ratings 
+the table below depicts the diffrent age ratings and what they mean
 ```{r}
  rating_meaning<- netflixShows %>% 
   select(rating, ratingLevel )
 distinct(rating_meaning)
  
 ```
-
-select and creat difrent datasest with diffrent show each seperated by rating
-
+this chart depicts all of the diffrent shows streaming and what there age rating is 
 ```{r}
- netflixShows %>% 
+netflixShows %>% 
 select(title,rating ) %>% 
 group_by(rating ) %>% 
 arrange(rating)
+
+```
+this chart shows the diffrent raating description
+```{r}
+netflixShows %>% 
+  distinct(ratingDescription)
 ```
 
-find the lowest average rating per year
+
+
+this next plot chart shows the corraltion beteen user ratings and the avergae release date 
+```{r}
+ ggplot(netflixShows ,aes(x= release_year,y=user_rating_score,  )) +
+  geom_point( color="#E50914",fill="#E50914")+
+  labs(title = "user ratings per year ",
+       x = "release  year",
+       y = "user rating ",)
+```
 
 ```{r}
 netflixShows %>% 
@@ -69,109 +71,30 @@ netflixShows %>%
   group_by(release_year) %>% 
   summarise(averageRating = mean(user_rating_score,na.rm = TRUE))
 ```
-
-find the aveger rating level per year
-
+this chart shoes the age rating of movies released each year
 ```{r}
-netflixShows %>% 
-  select( title, release_year,rating,ratingDescription,ratingLevel) %>% 
-  group_by(ratingDescription,ratingLevel) %>% 
-  count(ratingDescription,release_year )
-
-  
- 
-  
-```
-
-```{r}
-netflixShows %>% 
-  distinct(ratingDescription)
-```
-
-```{r}
- ggplot(netflixShows ,aes(x= release_year,y=user_rating_score,  )) +
-  geom_point( color="#E50914",fill="#E50914")+
-  labs(title = "user ratings per year ",
-       x = "release  year",
-       y = "user rating ",)
-
-```
-
-```{r}
-  ratings_1<-select(netflixShows,release_year, ratingLevel, ratingDescription) %>% 
-  group_by(release_year) %>% 
-  count(ratingDescription) %>% 
-  arrange(desc(release_year))
-ratings_1
-```
-
-```{r}
-
-
 ggplot(data=ratings_1,aes(y= ratingDescription,x= release_year, color= rating)) +
 geom_point(color="black",binwidth=5)+
-  labs(title = "amount of diffrently rated movies per year ",
+  labs(title = " diffrently rated movies per year ",
        x = "release  year",
        y = "age rating ",
        size = "age rating")
-```
-
-
-
-
-
-
-
-
-
-
-
-
-```{r}
-ggplot(netflixShows, aes( y=user_rating_score,x=release_year)) +
-  geom_point() 
 
 ```
-```{r}
-titlenum<-select(netflixShows, title, release_year) %>% 
-  group_by(release_year) %>% 
-  count(release_year)
-titlenum
-```
-
-```{r}
-
-ggplot(titlenum, aes(y=n,x=release_year))+
-  geom_point()+ 
-  labs(title = "amount of movies added per year ",
-       x = "release  year",
-       y = "number of movies ",
-       size = "")
-       
-```
-
-
-
-what was the average user rating for the movies made in 2016?
-```{r}
-netflixShows %>% 
-  select(release_year, user_rating_score) %>% 
-  filter(release_year==2016,) %>% 
-  summarize(average_rating_2016=(mean(user_rating_score,na.rm=TRUE)))
-```
-
-
-
-the average user rating in the year 2016 was 86.835
-
-
-how many moves were added each year?
-
-
+how many movies netflix has per release year
 ```{r}
 select(netflixShows, title, release_year) %>% 
   group_by(release_year) %>% 
   count(release_year)
+```
+
+```{r}
+ggplot(titlenum, aes(y=n,x=release_year))+
+  geom_point()+ 
+  labs(title = "movies on netflix per released per year ",
+       x = "release  year",
+       y = "number of movies ",
+       size = "")
 ```
 what are the newest Netflix series are most suitable for children under 13?
 
@@ -182,25 +105,58 @@ netflixShows %>%
   arrange(desc(release_year))%>% 
   summarize(title, rating, ratingLevel)
 ```
+there are total of 569 netflix series suitable for childern under 13.
+
+
+
 what year has the the most movies with the highest average rating
 ```{r}
-year_rating<-netflixShows %>% 
+netflixShows %>% 
   select(release_year, user_rating_score,title) %>% 
   group_by(release_year) %>% 
  
   summarise(averge_rating_per_year =mean(user_rating_score ,na.rm=TRUE))
 ```
+2017 has the highest average ratings
 
+
+How many netflix series  have a user rating score below a 60?
+```{r}
+netflixShows %>% 
+  select(release_year, user_rating_score, title) %>% 
+  filter(user_rating_score < 60)
+```
+A total of 27 netflix series  have a user rating lower than 60.
+
+
+How many netflix series have not been rated?
+```{r}
+netflixShows %>% 
+  select(release_year, rating, title) %>% 
+  filter(rating == "NR")
+```
+A total of 14 netflix series  have not been rated.
+
+
+How Many netflix series have a rating description greater than a 100?
 
 ```{r}
-year_rating %>% 
-  select(titlenum,n)
+netflixShows %>% 
+  select(title, rating, ratingDescription) %>% 
+  filter(ratingDescription > 100)
 ```
+A total of 163 netflix series have a rating description greater than a 100.
 
 
 
 
 
+future works 
+there is more work to be done such as matching the average watch time to how the users rated the show for example this could show you how the user rated a show or movie and whether they finished it or not and use that correlation to see whether people who finished the show rated it higher than the people who did not finish. another thing you could do is find out how long certain shows or moves are and see how many people are watching those shows versus shows or moves of the same genre with different lengths. these questions and others help Netflix maximize profits on licensing contracts as well as help recommend shows for people to watch as well as help people decide what to watch.  
 
 
+datasets cited 
+thank you  professor Rei Sanchez-Arias for provideing the netflix dataset
 
+netflix dataset: 
+https://github.com/reisanar/datasets/blob/4598573c75313d32076ea86e086f2d617d9fac8f/netflixShows.csv
