@@ -81,7 +81,7 @@ geom_point(color="black",binwidth=5)+
        size = "age rating")
 
 ```
-how many movies netflix has per release year
+how many movies Netflix has per release year
 ```{r}
 select(netflixShows, title, release_year) %>% 
   group_by(release_year) %>% 
@@ -126,26 +126,26 @@ netflixShows %>%
   select(release_year, user_rating_score, title) %>% 
   filter(user_rating_score < 60)
 ```
-A total of 27 netflix series  have a user rating lower than 60.
+A total of 27 Netflix series  have a user rating lower than 60.
 
 
-How many netflix series have not been rated?
+How many Netflix series have not been rated?
 ```{r}
 netflixShows %>% 
   select(release_year, rating, title) %>% 
   filter(rating == "NR")
 ```
-A total of 14 netflix series  have not been rated.
+A total of 14 Netflix series  have not been rated.
 
 
-How Many netflix series have a rating description greater than a 100?
+How Many Netflix series have a rating description greater than a 100?
 
 ```{r}
 netflixShows %>% 
   select(title, rating, ratingDescription) %>% 
   filter(ratingDescription > 100)
 ```
-A total of 163 netflix series have a rating description greater than a 100.
+A total of 163 Netflix series have a rating description greater than a 100.
 
 
 
@@ -155,8 +155,8 @@ future works
 there is more work to be done such as matching the average watch time to how the users rated the show for example this could show you how the user rated a show or movie and whether they finished it or not and use that correlation to see whether people who finished the show rated it higher than the people who did not finish. another thing you could do is find out how long certain shows or moves are and see how many people are watching those shows versus shows or moves of the same genre with different lengths. these questions and others help Netflix maximize profits on licensing contracts as well as help recommend shows for people to watch as well as help people decide what to watch.  
 
 
-datasets cited 
-thank you  professor Rei Sanchez-Arias for provideing the netflix dataset
+data sets cited 
+thank you  professor Rei Sanchez-Arias for providing the netflix data set
 
-netflix dataset: 
+Netflix data set: 
 https://github.com/reisanar/datasets/blob/4598573c75313d32076ea86e086f2d617d9fac8f/netflixShows.csv
