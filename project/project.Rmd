@@ -32,15 +32,15 @@ head(netflixShows)
 ```{r}
 summary(netflixShows)
 ```
-diffrent ratings 
-the table below depicts the diffrent age ratings and what they mean
+different ratings 
+the table below depicts the different age ratings and what they mean
 ```{r}
  rating_meaning<- netflixShows %>% 
   select(rating, ratingLevel )
 distinct(rating_meaning)
  
 ```
-this chart depicts all of the diffrent shows streaming and what there age rating is 
+this chart depicts all of the different shows streaming and what there age rating is 
 ```{r}
 netflixShows %>% 
 select(title,rating ) %>% 
@@ -48,7 +48,7 @@ group_by(rating ) %>%
 arrange(rating)
 
 ```
-this chart shows the diffrent raating description
+this chart shows the different rating description
 ```{r}
 netflixShows %>% 
   distinct(ratingDescription)
