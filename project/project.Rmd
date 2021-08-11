@@ -2,7 +2,25 @@
 title: "R Notebook"
 output: html_notebook
 ---
+Introduction
 
+ 
+
+Most of us watch Netflix and enjoy watching movies and TV shows on the platform daily. Since Netflix is one of the oldest streaming platforms that are still currently available, how does one select something to watch. Netflix has a huge library of shows and movies to watch which can make this process difficult.
+
+ 
+
+-       Do users use ratings to select a show?
+
+-       Do users use to select what to watch based on year?
+
+-       Or do they select something based on year?
+
+ 
+
+Let’s get this answered!
+
+Our final project is for Intro to Data Science summer B class 2021.
 
 ```{r}
 library(ggplot2)
