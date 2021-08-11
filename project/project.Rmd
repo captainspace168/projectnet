@@ -2,6 +2,12 @@
 title: "R Notebook"
 output: html_notebook
 ---
+
+team members
+Andres Jimenez ajimenezbonilla1234@floridapoly.edu
+Allan Gil      agil1330@floridapoly.edu
+
+
 Introduction
 
  
