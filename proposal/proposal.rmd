@@ -1,0 +1,30 @@
+---
+title: "Project Proposal"
+output: html_notebook
+---
+
+(notice that you can reuse some of the sections below for the final project report)
+
+## Section 1. Introduction
+
+
+Most of us watch Netflix and enjoy watching movies and TV shows on the platform daily. Since Netflix is one of the oldest streaming platforms that are still currently available, how does one select something to watch. Netflix has a huge library of shows and movies to watch which can make this process difficult.
+ 
+
+
+
+## Section 2. Data Analysis Plan
+-       What is the average rating based on year?
+
+-       What Netflix series are only for adults? 
+
+-       What series have the highest ratings?
+
+ 
+
+## Section 3. Data
+
+Netflix data set: 
+https://github.com/reisanar/datasets/blob/4598573c75313d32076ea86e086f2d617d9fac8f/netflixShows.csv
+
+Attributes: "title"             "rating"            "ratingLevel"       "ratingDescription" "release_year"      "user_rating_score" "user_rating_size" 

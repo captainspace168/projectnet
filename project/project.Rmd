@@ -10,11 +10,12 @@ Most of us watch Netflix and enjoy watching movies and TV shows on the platform 
 
  
 
--       Do users use ratings to select a show?
+-       What is the average rating based on year?
 
--       Do users use to select what to watch based on year?
+-       What Netflix series are only for adults? 
 
--       Or do they select something based on year?
+-       What series have the highest ratings?
+
 
  
 
@@ -44,7 +45,7 @@ glimpse(netflixShows)
 ```
 
 ```{r}
-head(netflixShows)
+colnames(netflixShows)
 ```
 
 ```{r}
@@ -114,6 +115,8 @@ ggplot(titlenum, aes(y=n,x=release_year))+
        y = "number of movies ",
        size = "")
 ```
+
+
 what are the newest Netflix series are most suitable for children under 13?
 
 ```{r}
