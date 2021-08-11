@@ -183,7 +183,8 @@ netflixShows %>%
 A total of 163 Netflix series have a rating description greater than a 100.
 
 
-
+conclusion
+After our data exploration, we were able to gain some insight into how release year, and content rating, affect the review scores. This project has helped me and my team adapt to an online environment and github has helped with this process. In this project we further learned important R skills.    
 
 
 future works 
