@@ -150,8 +150,8 @@ netflixShows %>%
   group_by(release_year) %>% 
   summarise(average_rating_per_year =mean(user_rating_score ,na.rm=TRUE)) %>% 
   ggplot()+
-  geom_text(aes(x=average_rating_per_year,y=release_year,label=release_year))+
-  labs(y= "year of ratings",x= "average rating per year",title = "Average ratings per year" )
+  geom_text(aes(y=average_rating_per_year,x=release_year,label=release_year))+
+  labs(x= "year of ratings",y= "average rating per year",title = "Average ratings per year" )
 ```
 
 
