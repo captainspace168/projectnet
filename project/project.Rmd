@@ -130,12 +130,20 @@ there are total of 569 netflix series suitable for childern under 13.
 what year has the the most movies with the highest average rating
 ```{r}
 netflixShows %>% 
-  select(release_year, user_rating_score,title) %>% 
+ select(release_year, user_rating_score,title) %>% 
   group_by(release_year) %>% 
- 
-  summarise(averge_rating_per_year =mean(user_rating_score ,na.rm=TRUE))
+  mutate(average_rating_per_year =mean(user_rating_score ,na.rm=TRUE))
 ```
 2017 has the highest average ratings
+```{r}
+netflixShows %>% 
+  select(release_year, user_rating_score,title) %>% 
+  group_by(release_year) %>% 
+  summarise(average_rating_per_year =mean(user_rating_score ,na.rm=TRUE)) %>% 
+  ggplot()+
+  geom_text(aes(x=average_rating_per_year,y=release_year,label=release_year))+
+  labs(y= "year of ratings",x= "average rating per year",title = "Average ratings per year" )
+```
 
 
 How many netflix series  have a user rating score below a 60?
